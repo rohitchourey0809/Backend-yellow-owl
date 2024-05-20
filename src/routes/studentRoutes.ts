@@ -8,5 +8,7 @@ router.get("/", studentController.getAllStudents);
 router.post("/", studentController.addStudent);
 router.put("/:id", studentController.editStudent);
 router.delete("/:id", studentController.deleteStudent);
+// GET /students/search?name=John - Search students by name
+router.get("/search", studentController.searchStudentsByName);
 
 export default router;

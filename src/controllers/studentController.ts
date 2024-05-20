@@ -49,3 +49,16 @@ export const deleteStudent = async (req: Request, res: Response) => {
     res.status(500).send(err);
   }
 };
+
+export const searchStudentsByName = async (req: Request, res: Response) => {
+  const name = req.query.name as string;
+
+  try {
+    const students = await StudentModel.find({
+      name: { $regex: name, $options: "i" },
+    });
+    res.json(students);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
