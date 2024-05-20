@@ -62,3 +62,16 @@ export const searchStudentsByName = async (req: Request, res: Response) => {
     res.status(500).send(err);
   }
 };
+
+
+export const getStudentById = async (req: Request, res: Response) => {
+  try {
+    const student = await StudentModel.findById(req.params.id);
+    if (!student) {
+      return res.status(404).send("Student not found");
+    }
+    res.json(student);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
