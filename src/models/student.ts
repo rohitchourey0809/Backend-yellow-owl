@@ -1,21 +1,20 @@
-import { Schema, model, Document } from "mongoose";
+// src/models/student.ts
+import mongoose, { Document, Schema } from "mongoose";
 
-interface Student extends Document {
+export interface IStudent extends Document {
   name: string;
   email: string;
-  phoneNo: string;
+  phoneNumber: string;
   enrollmentNo: string;
   dateOfAdmission: Date;
 }
 
-const studentSchema = new Schema<Student>({
+const StudentSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  phoneNo: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
   enrollmentNo: { type: String, required: true },
-  dateOfAdmission: { type: Date, required: true },
+  dateOfAdmission: { type: Date, default: Date.now },
 });
 
-const StudentModel = model<Student>("Student", studentSchema);
-
-export { Student, StudentModel };
+export const StudentModel = mongoose.model<IStudent>("Student", StudentSchema);
