@@ -42,6 +42,7 @@ app.get("/students", async (req: Request, res: Response) => {
 
 // Add a new student
 app.post("/students", async (req: Request, res: Response) => {
+    console.log("req.body", req.body);
   try {
     const student = new StudentModel(req.body);
     await student.save();
